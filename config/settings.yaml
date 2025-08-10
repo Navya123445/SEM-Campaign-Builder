@@ -22,7 +22,6 @@ campaign_structure:
     phrase: 0.4
     broad: 0.3
 
-# Alternative Keyword Research (bypassing Google Keyword Planner API)
+# Keyword Research Settings
 keyword_research:
-  wordstream_enabled: true
   manual_expansion: true

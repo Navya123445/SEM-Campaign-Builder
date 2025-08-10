@@ -1,111 +1,1308 @@
 ad_groups:
+- intent_category: Brand Terms
+  keyword_count: 13
+  keywords:
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.91
+    search_volume: 3990
+    term: cubehq dashboard
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.86
+    search_volume: 1410
+    term: cubehq business intelligence
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.86
+    search_volume: 2699
+    term: cubehq analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.84
+    search_volume: 7447
+    term: cubehq ai
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.78
+    search_volume: 4243
+    term: cubehq platform
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.75
+    search_volume: 893
+    term: cubehq data platform
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.74
+    search_volume: 3106
+    term: cubehq software
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.72
+    search_volume: 4166
+    term: cubehq login
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.7
+    search_volume: 3590
+    term: cubehq pricing
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.68
+    search_volume: 3153
+    term: cubehq demo
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.66
+    search_volume: 2720
+    term: cubehq alternatives
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.64
+    search_volume: 2106
+    term: cubehq
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.62
+    search_volume: 1766
+    term: cubehq reviews
+  name: Brand & Company Terms
+  suggested_cpc_high: 1.7
+  suggested_cpc_low: 0.35
+  theme_description: Keywords containing brand names and company-specific terms
+- intent_category: Category Terms
+  keyword_count: 5
+  keywords:
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.67
+    search_volume: 1439
+    term: local data visualization tool
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.67
+    search_volume: 1268
+    term: best data visualization tool
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.56
+    search_volume: 2738
+    term: feedback data across
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: phrase
+    relevance_score: 0.55
+    search_volume: 2367
+    term: data along
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.48
+    search_volume: 729
+    term: data along with
+  name: Core Business Intelligence
+  suggested_cpc_high: 1.82
+  suggested_cpc_low: 0.41
+  theme_description: Primary business intelligence and analytics keywords
+- intent_category: Commercial Intent
+  keyword_count: 74
+  keywords:
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.77
+    search_volume: 2538
+    term: delhi analytics platform
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.74
+    search_volume: 1800
+    term: hyderabad bi software
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.73
+    search_volume: 2748
+    term: analytics solutions mumbai
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.72
+    search_volume: 1399
+    term: affordable business intelligence platform
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.72
+    search_volume: 1355
+    term: affordable business intelligence solution
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.7
+    search_volume: 887
+    term: business intelligence platform top
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.7
+    search_volume: 2409
+    term: bengaluru business intelligence
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.7
+    search_volume: 704
+    term: bengaluru bi software
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.69
+    search_volume: 669
+    term: top business intelligence solution
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.69
+    search_volume: 649
+    term: best business intelligence platform
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.69
+    search_volume: 1921
+    term: analytics solutions delhi
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.69
+    search_volume: 549
+    term: business intelligence solution affordable
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.67
+    search_volume: 1358
+    term: analytics solutions hyderabad
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.67
+    search_volume: 1615
+    term: mumbai business intelligence
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.67
+    search_volume: 2871
+    term: real-time analytics local
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.67
+    search_volume: 2857
+    term: enterprise dashboard top
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.66
+    search_volume: 2775
+    term: real-time analytics best
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.66
+    search_volume: 2747
+    term: best predictive analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.65
+    search_volume: 1238
+    term: delhi business intelligence
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.65
+    search_volume: 2485
+    term: local real-time analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.65
+    search_volume: 2404
+    term: top enterprise dashboard
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.64
+    search_volume: 564
+    term: affordable data visualization tool
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: phrase
+    relevance_score: 0.64
+    search_volume: 5634
+    term: driven platform
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.64
+    search_volume: 2043
+    term: predictive analytics best
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.64
+    search_volume: 2042
+    term: affordable real-time analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.63
+    search_volume: 1991
+    term: affordable enterprise dashboard
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.63
+    search_volume: 1971
+    term: real-time analytics affordable
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.63
+    search_volume: 1954
+    term: hyderabad data analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.63
+    search_volume: 610
+    term: hyderabad business intelligence
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.62
+    search_volume: 1581
+    term: enterprise dashboard affordable
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.62
+    search_volume: 1521
+    term: best enterprise dashboard
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.61
+    search_volume: 1477
+    term: best real-time analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.61
+    search_volume: 1424
+    term: top real-time analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.61
+    search_volume: 1398
+    term: top predictive analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.61
+    search_volume: 1382
+    term: enterprise dashboard local
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.61
+    search_volume: 1364
+    term: enterprise dashboard best
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.61
+    search_volume: 1323
+    term: predictive analytics affordable
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.61
+    search_volume: 1278
+    term: predictive analytics near me
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.6
+    search_volume: 1247
+    term: local predictive analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.6
+    search_volume: 1113
+    term: affordable predictive analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.59
+    search_volume: 996
+    term: near me predictive analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.59
+    search_volume: 955
+    term: local enterprise dashboard
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.59
+    search_volume: 808
+    term: predictive analytics top
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.58
+    search_volume: 717
+    term: predictive analytics local
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.58
+    search_volume: 703
+    term: mumbai data analytics
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.58
+    search_volume: 532
+    term: purchase business intelligence platform
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.58
+    search_volume: 646
+    term: delhi data analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.58
+    search_volume: 594
+    term: bengaluru data analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.58
+    search_volume: 570
+    term: real-time analytics top
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.57
+    search_volume: 1482
+    term: buy data visualization tool
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.57
+    search_volume: 1316
+    term: affordable data integration platform
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.56
+    search_volume: 1156
+    term: data integration platform affordable
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.56
+    search_volume: 1281
+    term: data visualization tool buy
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.51
+    search_volume: 1280
+    term: AI powered insights local
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.49
+    search_volume: 974
+    term: AI powered insights top
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.49
+    search_volume: 867
+    term: best AI powered insights
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: broad
+    relevance_score: 0.47
+    search_volume: 2899
+    term: real-time analytics purchase
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.47
+    search_volume: 2844
+    term: business automation best
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: broad
+    relevance_score: 0.46
+    search_volume: 2542
+    term: buy enterprise dashboard
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: broad
+    relevance_score: 0.46
+    search_volume: 2487
+    term: purchase real-time analytics
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: broad
+    relevance_score: 0.45
+    search_volume: 2195
+    term: buy predictive analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: phrase
+    relevance_score: 0.45
+    search_volume: 2332
+    term: business needs
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: broad
+    relevance_score: 0.45
+    search_volume: 2140
+    term: predictive analytics purchase
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: broad
+    relevance_score: 0.44
+    search_volume: 2054
+    term: purchase predictive analytics
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: broad
+    relevance_score: 0.44
+    search_volume: 2029
+    term: enterprise dashboard purchase
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: broad
+    relevance_score: 0.43
+    search_volume: 1734
+    term: buy real-time analytics
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.43
+    search_volume: 2754
+    term: more platformlogincontact get
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.43
+    search_volume: 1779
+    term: top business automation
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.42
+    search_volume: 1630
+    term: best business automation
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: broad
+    relevance_score: 0.42
+    search_volume: 1423
+    term: enterprise dashboard buy
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: broad
+    relevance_score: 0.41
+    search_volume: 1206
+    term: real-time analytics buy
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.41
+    search_volume: 1338
+    term: business automation top
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.41
+    search_volume: 1275
+    term: business via
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.4
+    search_volume: 1226
+    term: management for marketing
+  name: Commercial Intent High-Value
+  suggested_cpc_high: 2.23
+  suggested_cpc_low: 0.61
+  theme_description: Keywords showing strong buying intent and commercial value
+- intent_category: Product-specific Terms
+  keyword_count: 46
+  keywords:
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.78
+    search_volume: 2950
+    term: bengaluru analytics platform
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.77
+    search_volume: 2733
+    term: mumbai analytics platform
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.72
+    search_volume: 1450
+    term: business intelligence solution top
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.72
+    search_volume: 1231
+    term: best business intelligence solution
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.72
+    search_volume: 1197
+    term: business intelligence solution local
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.71
+    search_volume: 1140
+    term: delhi bi software
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.71
+    search_volume: 1099
+    term: business intelligence solution best
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.71
+    search_volume: 1013
+    term: business intelligence solution near me
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.7
+    search_volume: 842
+    term: cheap business intelligence solution
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.7
+    search_volume: 767
+    term: local business intelligence solution
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.7
+    search_volume: 691
+    term: hyderabad analytics platform
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.69
+    search_volume: 542
+    term: local business intelligence platform
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.67
+    search_volume: 1353
+    term: cheap data analytics software
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.67
+    search_volume: 1298
+    term: best data analytics software
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.67
+    search_volume: 1286
+    term: data analytics software local
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.67
+    search_volume: 1195
+    term: analytics solutions bengaluru
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.66
+    search_volume: 964
+    term: local data analytics software
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.66
+    search_volume: 964
+    term: data analytics software top
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.65
+    search_volume: 832
+    term: data analytics software best
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.65
+    search_volume: 701
+    term: top data analytics software
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.64
+    search_volume: 607
+    term: data analytics software near me
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.64
+    search_volume: 546
+    term: affordable data analytics software
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.62
+    search_volume: 1480
+    term: buy business intelligence solution
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.62
+    search_volume: 1419
+    term: business intelligence solution purchase
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.6
+    search_volume: 966
+    term: purchase business intelligence solution
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.6
+    search_volume: 960
+    term: business intelligence platform buy
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.59
+    search_volume: 603
+    term: business intelligence solution buy
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.57
+    search_volume: 1464
+    term: purchase data analytics software
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.57
+    search_volume: 1278
+    term: data integration platform near me
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.57
+    search_volume: 1387
+    term: data analytics software purchase
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.56
+    search_volume: 1190
+    term: data integration platform best
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.56
+    search_volume: 1320
+    term: data visualization tool purchase
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.56
+    search_volume: 1309
+    term: buy data analytics software
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.56
+    search_volume: 1145
+    term: data integration platform top
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.56
+    search_volume: 1135
+    term: local data integration platform
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.56
+    search_volume: 1107
+    term: data integration platform local
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.55
+    search_volume: 858
+    term: top data integration platform
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.54
+    search_volume: 819
+    term: data analytics software buy
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.54
+    search_volume: 582
+    term: best data integration platform
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.54
+    search_volume: 538
+    term: cheap data integration platform
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.47
+    search_volume: 1394
+    term: business intelligence services mumbai
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.47
+    search_volume: 1366
+    term: business intelligence services delhi
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.46
+    search_volume: 1353
+    term: data integration platform buy
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.46
+    search_volume: 1311
+    term: buy data integration platform
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.45
+    search_volume: 847
+    term: business intelligence services hyderabad
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.44
+    search_volume: 671
+    term: data integration platform purchase
+  name: Data Analytics Solutions
+  suggested_cpc_high: 3.04
+  suggested_cpc_low: 1.02
+  theme_description: Specific data analytics and dashboard-related keywords
 - intent_category: Category Terms
   keyword_count: 5
   keywords:
   - bid_high: 1.5
     bid_low: 0.25
     competition: low
-    match_type: phrase
-    relevance_score: 0.9
-    search_volume: 3612
-    term: Search volume
+    match_type: broad
+    relevance_score: 0.65
+    search_volume: 2496
+    term: cheap predictive analytics
   - bid_high: 1.5
     bid_low: 0.25
     competition: low
     match_type: phrase
-    relevance_score: 0.89
-    search_volume: 3560
-    term: (high range)
+    relevance_score: 0.57
+    search_volume: 2905
+    term: data driven
   - bid_high: 1.5
     bid_low: 0.25
     competition: low
     match_type: broad
-    relevance_score: 0.83
-    search_volume: 2985
-    term: State or Country
+    relevance_score: 0.51
+    search_volume: 1464
+    term: 3rd party data
   - bid_high: 1.5
     bid_low: 0.25
     competition: low
     match_type: broad
-    relevance_score: 0.76
-    search_volume: 2373
-    term: Is your website
+    relevance_score: 0.51
+    search_volume: 1449
+    term: data driven research
   - bid_high: 1.5
     bid_low: 0.25
     competition: low
-    match_type: phrase
-    relevance_score: 0.75
-    search_volume: 2329
-    term: All Industries
-  name: Core Business Intelligence
+    match_type: exact
+    relevance_score: 0.49
+    search_volume: 957
+    term: local AI powered insights
+  name: Enterprise & B2B Focus
   suggested_cpc_high: 1.5
   suggested_cpc_low: 0.25
-  theme_description: Primary business intelligence and analytics keywords
-- intent_category: Product-specific Terms
+  theme_description: Enterprise-focused and B2B-targeted keywords
+- intent_category: Long-Tail Informational Queries
   keyword_count: 4
   keywords:
   - bid_high: 1.5
     bid_low: 0.25
     competition: low
-    match_type: broad
-    relevance_score: 0.71
-    search_volume: 1961
-    term: No Results
+    match_type: exact
+    relevance_score: 0.6
+    search_volume: 1077
+    term: real-time analytics near me
   - bid_high: 1.5
     bid_low: 0.25
     competition: low
-    match_type: broad
-    relevance_score: 0.67
-    search_volume: 1587
-    term: Invalid Url
-  - bid_high: 1.5
-    bid_low: 0.25
-    competition: low
-    match_type: broad
-    relevance_score: 0.64
-    search_volume: 1344
-    term: Refine Your Search
+    match_type: exact
+    relevance_score: 0.49
+    search_volume: 915
+    term: AI powered insights near me
   - bid_high: 2.5
     bid_low: 0.75
     competition: medium
     match_type: broad
-    relevance_score: 0.49
-    search_volume: 1654
-    term: Free Keyword Tool
-  name: Data Analytics Solutions
-  suggested_cpc_high: 1.75
-  suggested_cpc_low: 0.38
-  theme_description: Specific data analytics and dashboard-related keywords
-- intent_category: Long-Tail Informational Queries
-  keyword_count: 3
+    relevance_score: 0.46
+    search_volume: 996
+    term: platform turns every
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.43
+    search_volume: 1876
+    term: property managementincrease resident
+  name: Long-Tail Opportunities
+  suggested_cpc_high: 1.7
+  suggested_cpc_low: 0.35
+  theme_description: Specific, lower competition long-tail keywords
+- intent_category: Competitor Terms
+  keyword_count: 2
   keywords:
   - bid_high: 1.5
     bid_low: 0.25
     competition: low
-    match_type: exact
-    relevance_score: 0.65
-    search_volume: 1364
-    term: '*Keyword or Website URL'
+    match_type: broad
+    relevance_score: 0.53
+    search_volume: 1927
+    term: from competitive data
   - bid_high: 1.5
     bid_low: 0.25
     competition: low
-    match_type: exact
-    relevance_score: 0.57
-    search_volume: 701
-    term: 'Choose an Industry (Optional):'
-  - bid_high: 1.5
-    bid_low: 0.25
-    competition: low
-    match_type: exact
-    relevance_score: 0.57
-    search_volume: 683
-    term: performing at its best?
-  name: Long-Tail Opportunities
+    match_type: broad
+    relevance_score: 0.46
+    search_volume: 2621
+    term: using reputation management
+  name: Competitive Analysis
   suggested_cpc_high: 1.5
   suggested_cpc_low: 0.25
-  theme_description: Specific, lower competition long-tail keywords
+  theme_description: Keywords related to competitor analysis and comparison
+- intent_category: Product-specific Terms
+  keyword_count: 29
+  keywords:
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.76
+    search_volume: 2268
+    term: mumbai bi software
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.72
+    search_volume: 1231
+    term: business intelligence platform near me
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.69
+    search_volume: 540
+    term: near me business intelligence platform
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.67
+    search_volume: 1403
+    term: data visualization tool affordable
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: phrase
+    relevance_score: 0.66
+    search_volume: 7743
+    term: in mumbai
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.65
+    search_volume: 863
+    term: near me data visualization tool
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.65
+    search_volume: 826
+    term: cheap data visualization tool
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: phrase
+    relevance_score: 0.65
+    search_volume: 5858
+    term: room platform
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.64
+    search_volume: 633
+    term: data visualization tool best
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.64
+    search_volume: 526
+    term: data visualization tool near me
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.61
+    search_volume: 1499
+    term: cheap real-time analytics
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.6
+    search_volume: 1031
+    term: near me enterprise dashboard
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.6
+    search_volume: 1024
+    term: cheap enterprise dashboard
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: exact
+    relevance_score: 0.57
+    search_volume: 1344
+    term: near me data integration platform
+  - bid_high: 4.0
+    bid_low: 1.5
+    competition: high
+    match_type: exact
+    relevance_score: 0.55
+    search_volume: 1004
+    term: purchase data visualization tool
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.51
+    search_volume: 1353
+    term: AI powered insights affordable
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.5
+    search_volume: 1229
+    term: AI powered insights best
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: phrase
+    relevance_score: 0.5
+    search_volume: 3727
+    term: in bengaluru
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.5
+    search_volume: 1093
+    term: near me AI powered insights
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: phrase
+    relevance_score: 0.49
+    search_volume: 4409
+    term: more platformlogincontact
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: phrase
+    relevance_score: 0.49
+    search_volume: 3331
+    term: in hyderabad
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.47
+    search_volume: 2873
+    term: bi consultant delhi
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.45
+    search_volume: 2390
+    term: bi consultant mumbai
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.45
+    search_volume: 2342
+    term: local business automation
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.44
+    search_volume: 586
+    term: solutions automotive financial
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: phrase
+    relevance_score: 0.44
+    search_volume: 2198
+    term: in delhi
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.43
+    search_volume: 1840
+    term: bi consultant hyderabad
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.41
+    search_volume: 2311
+    term: the platform the
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.4
+    search_volume: 1227
+    term: modern businesses
+  name: Technical Features
+  suggested_cpc_high: 1.93
+  suggested_cpc_low: 0.47
+  theme_description: Technical features and capabilities keywords
 campaign_name: SEM Campaign - Search
 target_conversion_rate: 0.02
-total_ad_groups: 3
+total_ad_groups: 8
 total_budget: 75000
-total_keywords: 12
+total_keywords: 178

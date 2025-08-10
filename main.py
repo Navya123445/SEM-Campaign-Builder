@@ -19,6 +19,8 @@ from collectors.website_analyzer import WebsiteAnalyzer
 from collectors.keyword_researcher import KeywordResearcher
 from processors.huggingface_processor import HuggingFaceProcessor  # NEW: Hugging Face processor
 from generators.search_campaign_generator import SearchCampaignGenerator
+from generators.pmax_campaign_generator import PMaxCampaignGenerator
+from generators.shopping_campaign_generator import ShoppingCampaignGenerator
 
 # Load environment variables
 load_dotenv()
@@ -161,6 +163,19 @@ class SEMCampaignBuilder:
                 competitor_keywords = self.keyword_researcher.research_keywords_from_website(competitor_url)
                 all_keywords.extend(competitor_keywords)
         
+        # Location-based expansion
+        try:
+            service_locations = self.config['brand_inputs'].get('service_locations', [])
+            if service_locations:
+                print("   Generating location-based keyword variants...")
+                base_terms = [kw.get('keyword', '') for kw in all_keywords if kw.get('keyword')] 
+                base_terms = list({t.strip() for t in base_terms})[:20]
+                location_variants = self.keyword_researcher.generate_location_keywords(base_terms, service_locations)
+                all_keywords.extend(location_variants)
+                print(f"   ✅ Added {len(location_variants)} location-specific keywords")
+        except Exception as _:
+            print("   ⚠️  Location-based expansion failed; continuing without it")
+        
         print(f"✅ Keyword discovery complete: {len(all_keywords)} total keywords found")
         return all_keywords
     
@@ -253,6 +268,43 @@ class SEMCampaignBuilder:
         campaign = generator.create_search_campaign(ad_groups)
         
         return campaign
+
+    def run_deliverable_2_pmax(self, processed_keywords: List) -> Dict:
+        """Create Performance Max asset group themes from top-performing keywords."""
+        print("\n🚀 Generating Performance Max Themes")
+        print("-" * 40)
+        pmax = PMaxCampaignGenerator(top_n=80)
+        themes = pmax.create_asset_group_themes(processed_keywords)
+
+        os.makedirs("output/reports", exist_ok=True)
+        pmax_file = "output/reports/pmax_themes.yaml"
+        with open(pmax_file, 'w') as f:
+            yaml.dump({'pmax_themes': themes}, f, default_flow_style=False, indent=2)
+        print(f"✅ PMax themes saved: {pmax_file}")
+        return themes
+
+    def run_deliverable_3_shopping(self, processed_keywords: List) -> Dict:
+        """Suggest Shopping CPC bids based on CPC benchmarks, budget and 2% CVR."""
+        print("\n🛒 Generating Shopping CPC Suggestions")
+        print("-" * 40)
+        shopping_budget = self.config['ad_budgets']['shopping_ads_budget']
+        target_cvr = self.config['conversion_settings']['target_conversion_rate']
+        target_cpa = max(50.0, shopping_budget * 0.02)  # simple placeholder heuristic
+
+        generator = ShoppingCampaignGenerator(shopping_budget, target_cvr)
+        # Use product-ish keywords: those with software/platform/tool/dashboard/reporting
+        product_like = [
+            kw for kw in processed_keywords
+            if any(t in kw.term.lower() for t in ['software', 'platform', 'tool', 'dashboard', 'reporting', 'product'])
+        ]
+        suggestions = generator.suggest_product_bids(product_like, target_cpa)
+
+        os.makedirs("output/reports", exist_ok=True)
+        out_file = "output/reports/shopping_bid_suggestions.yaml"
+        with open(out_file, 'w') as f:
+            yaml.dump({'shopping_bid_suggestions': suggestions, 'target_cpc_note': 'anchored to CPC ranges and target CPA x CVR'}, f, default_flow_style=False, indent=2)
+        print(f"✅ Shopping bid suggestions saved: {out_file}")
+        return {'suggestions': suggestions}
     
     def _save_deliverable_1(self, campaign):
         """Save Deliverable 1 outputs"""
@@ -356,7 +408,7 @@ class SEMCampaignBuilder:
                 'ad_group_categories': [ag.intent_category for ag in campaign.ad_groups],
                 'next_steps': [
                     'Review ad groups and keywords',
-                    'Set up Google Ads account structure', 
+                    'Set up advertising account structure', 
                     'Create ad copy for each ad group',
                     'Proceed with Deliverable 2 (Performance Max themes)'
                 ]
@@ -372,11 +424,22 @@ def main():
         
         # Execute Deliverable 1
         campaign = builder.run_deliverable_1()
+
+        # For PMax and Shopping we need processed keywords. Recompute minimal pipeline pieces.
+        raw_keywords = builder._execute_keyword_discovery()
+        filtered = builder._consolidate_and_filter_keywords(raw_keywords)
+        processed = builder._process_keywords(filtered)
+
+        # Execute Deliverable 2: PMax Themes
+        builder.run_deliverable_2_pmax(processed)
+
+        # Execute Deliverable 3: Shopping bids
+        builder.run_deliverable_3_shopping(processed)
         
-        print(f"\n🎉 SUCCESS! Deliverable 1 completed successfully!")
+        print(f"\n🎉 SUCCESS! Deliverables 1-3 completed successfully!")
         print(f"📊 Generated {len(campaign.ad_groups)} ad groups with {sum(len(ag.keywords) for ag in campaign.ad_groups)} keywords")
         print(f"💰 Budget: ₹{campaign.total_budget:,.2f}")
-        print(f"📁 Check 'output/' folder for detailed results")
+        print(f"📁 Check 'output/' folder for detailed results (campaigns, reports)")
         print(f"\n⏰ Ready for 2-day priority submission!")
         
     except Exception as e:

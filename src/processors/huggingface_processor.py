@@ -1,40 +1,27 @@
-from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
+from transformers import pipeline
 from typing import List, Dict
-import torch
 import json
 import re
 from src.models.keyword import Keyword, AdGroup, MatchType, CompetitionLevel
 
+
 class HuggingFaceProcessor:
     def __init__(self, settings: Dict):
         self.settings = settings
-        print("🤗 Initializing Hugging Face model for keyword processing...")
+        print("🤗 Initializing Hugging Face zero-shot classifier for grouping...")
         
+        self.zero_shot = None
         try:
-            # Use a lightweight but capable model
-            model_name = "microsoft/DialoGPT-small"  # Fast and efficient
-            
-            self.tokenizer = AutoTokenizer.from_pretrained(model_name, padding_side='left')
-            if self.tokenizer.pad_token is None:
-                self.tokenizer.pad_token = self.tokenizer.eos_token
-                
-            self.model = AutoModelForCausalLM.from_pretrained(
-                model_name,
-                torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
-                device_map="auto" if torch.cuda.is_available() else None
-            )
-            
-            print("✅ Hugging Face model loaded successfully!")
-            
+            # DistilBERT MNLI is reasonably small and good for zero-shot classification
+            self.zero_shot = pipeline("zero-shot-classification", model="typeform/distilbert-base-uncased-mnli")
+            print("✅ Zero-shot classifier loaded")
         except Exception as e:
-            print(f"⚠️  Hugging Face model loading failed: {e}")
-            print("🔄 Using rule-based processing as fallback")
-            self.model = None
-            self.tokenizer = None
+            print(f"⚠️  Zero-shot classifier unavailable: {e}")
+            print("🔄 Using enhanced rule-based grouping")
     
     def process_raw_keywords(self, raw_keywords: List[Dict], min_volume: int = 500) -> List[Keyword]:
         """Convert raw keyword data to Keyword objects with filtering"""
-        print(f"🔄 Processing {len(raw_keywords)} raw keywords with Hugging Face...")
+        print(f"🔄 Processing {len(raw_keywords)} raw keywords...")
         
         processed_keywords = []
         
@@ -75,8 +62,16 @@ class HuggingFaceProcessor:
         scored_keywords = self._calculate_relevance_scores(processed_keywords)
         scored_keywords.sort(key=lambda k: k.relevance_score, reverse=True)
         
-        print(f"✅ Processed {len(scored_keywords)} keywords with Hugging Face")
-        return scored_keywords
+        # Optimize keyword count: keep only high-quality keywords (target 150-200)
+        relevance_threshold = 0.4  # Only keep keywords with relevance >= 0.4
+        high_quality_keywords = [kw for kw in scored_keywords if kw.relevance_score >= relevance_threshold]
+        
+        # Cap at 200 keywords for quality
+        if len(high_quality_keywords) > 200:
+            high_quality_keywords = high_quality_keywords[:200]
+        
+        print(f"✅ Processed {len(high_quality_keywords)} high-quality keywords (filtered from {len(scored_keywords)} total)")
+        return high_quality_keywords
     
     def _suggest_match_type(self, keyword_text: str, metrics) -> MatchType:
         """Suggest match type based on keyword characteristics"""
@@ -93,7 +88,7 @@ class HuggingFaceProcessor:
             return MatchType.BROAD
     
     def _calculate_relevance_scores(self, keywords: List[Keyword]) -> List[Keyword]:
-        """Calculate relevance scores"""
+        """Calculate relevance scores with focus on BI/analytics relevance and quality"""
         if not keywords:
             return keywords
         
@@ -101,77 +96,126 @@ class HuggingFaceProcessor:
         max_cpc = max(kw.metrics.top_of_page_bid_high for kw in keywords)
         
         for keyword in keywords:
-            volume_score = (keyword.metrics.average_monthly_searches / max_volume) * 0.4
+            term_lower = keyword.term.lower()
             
+            # Base volume score (30% weight)
+            volume_score = (keyword.metrics.average_monthly_searches / max_volume) * 0.3
+            
+            # Competition scoring (20% weight)
             comp_scores = {
-                CompetitionLevel.LOW: 0.3,
-                CompetitionLevel.MEDIUM: 0.2,
+                CompetitionLevel.LOW: 0.2,
+                CompetitionLevel.MEDIUM: 0.15,
                 CompetitionLevel.HIGH: 0.1
             }
             competition_score = comp_scores[keyword.metrics.competition_level]
             
+            # CPC efficiency (20% weight)
             avg_cpc = (keyword.metrics.top_of_page_bid_low + keyword.metrics.top_of_page_bid_high) / 2
-            cpc_efficiency = max(0, (max_cpc - avg_cpc) / max_cpc) * 0.3
+            cpc_efficiency = max(0, (max_cpc - avg_cpc) / max_cpc) * 0.2
             
-            keyword.relevance_score = volume_score + competition_score + cpc_efficiency
+            # Business relevance bonus (30% weight) - Most important!
+            relevance_bonus = 0.0
+            
+            # High-value BI terms
+            if any(high_value in term_lower for high_value in ['business intelligence', 'bi software', 'analytics platform']):
+                relevance_bonus += 0.25
+            elif any(bi_term in term_lower for bi_term in ['analytics', 'dashboard', 'reporting', 'data visualization']):
+                relevance_bonus += 0.2
+            elif any(general_bi in term_lower for general_bi in ['data', 'insights', 'intelligence']):
+                relevance_bonus += 0.1
+            
+            # Brand terms get high relevance
+            if any(brand in term_lower for brand in ['cubehq', 'cube']):
+                relevance_bonus += 0.2
+            
+            # Commercial intent
+            if any(commercial in term_lower for commercial in ['software', 'platform', 'tool', 'solution']):
+                relevance_bonus += 0.15
+            
+            # Penalize irrelevant/fragmented terms
+            if any(irrelevant in term_lower for irrelevant in ['get', 'see', 'more', 'over', 'the', 'and']):
+                relevance_bonus -= 0.1
+            
+            keyword.relevance_score = min(1.0, volume_score + competition_score + cpc_efficiency + relevance_bonus)
         
         return keywords
     
     def create_ad_groups_with_llm(self, keywords: List[Keyword], max_groups: int = 15) -> List[AdGroup]:
         """Create ad groups using Hugging Face model or enhanced rules"""
-        print(f"🤗 Creating ad groups from {len(keywords)} keywords using Hugging Face...")
+        print(f"🤗 Creating ad groups from {len(keywords)} keywords using LLM classification when available...")
         
-        if self.model is None:
-            return self._create_enhanced_rule_based_groups(keywords, max_groups)
+        if self.zero_shot is not None:
+            try:
+                return self._create_zero_shot_groups(keywords, max_groups)
+            except Exception as e:
+                print(f"❌ Zero-shot grouping failed: {e}")
         
-        try:
-            # Use Hugging Face model for intelligent grouping
-            return self._create_ai_powered_groups(keywords, max_groups)
-        except Exception as e:
-            print(f"❌ Hugging Face processing failed: {e}")
-            print("🔄 Falling back to enhanced rule-based grouping...")
-            return self._create_enhanced_rule_based_groups(keywords, max_groups)
-    
-    def _create_ai_powered_groups(self, keywords: List[Keyword], max_groups: int) -> List[AdGroup]:
-        """Use Hugging Face model for smarter grouping"""
-        
-        # Prepare keyword context for the model
-        keyword_list = [kw.term for kw in keywords[:30]]  # Use top 30 keywords
-        
-        # Create a simple prompt that works with smaller models
-        prompt = f"Group these business keywords by intent: {', '.join(keyword_list[:15])}"
-        
-        # Use the model (simplified approach for smaller models)
-        try:
-            inputs = self.tokenizer.encode(prompt, return_tensors="pt", max_length=512, truncation=True)
-            
-            with torch.no_grad():
-                outputs = self.model.generate(
-                    inputs,
-                    max_length=inputs.shape[1] + 50,
-                    num_return_sequences=1,
-                    temperature=0.7,
-                    do_sample=True,
-                    pad_token_id=self.tokenizer.eos_token_id
-                )
-            
-            # Decode response (but for practical purposes, use rule-based grouping)
-            # The model output won't be perfect for structured data, so we enhance the rules instead
-            
-        except Exception as e:
-            print(f"Model generation failed: {e}")
-        
-        # Use enhanced rule-based grouping (more intelligent than basic version)
         return self._create_enhanced_rule_based_groups(keywords, max_groups)
+    
+    def _create_zero_shot_groups(self, keywords: List[Keyword], max_groups: int) -> List[AdGroup]:
+        """Group keywords by zero-shot classification into intent buckets."""
+        labels = [
+            'Brand & Company Terms',
+            'Core Business Intelligence',
+            'Commercial Intent High-Value',
+            'Data Analytics Solutions',
+            'Enterprise & B2B Focus',
+            'Long-Tail Opportunities',
+            'Competitive Analysis',
+            'Technical Features'
+        ]
+        group_meta = {
+            'Brand & Company Terms': ('Brand Terms', 'Keywords containing brand names and company-specific terms'),
+            'Core Business Intelligence': ('Category Terms', 'Primary business intelligence and analytics keywords'),
+            'Commercial Intent High-Value': ('Commercial Intent', 'Keywords showing strong buying intent and commercial value'),
+            'Data Analytics Solutions': ('Product-specific Terms', 'Specific data analytics and dashboard-related keywords'),
+            'Enterprise & B2B Focus': ('Category Terms', 'Enterprise-focused and B2B-targeted keywords'),
+            'Long-Tail Opportunities': ('Long-Tail Informational Queries', 'Specific, lower competition long-tail keywords'),
+            'Competitive Analysis': ('Competitor Terms', 'Keywords related to competitor analysis and comparison'),
+            'Technical Features': ('Product-specific Terms', 'Technical features and capabilities keywords')
+        }
+
+        buckets: Dict[str, List[Keyword]] = {k: [] for k in labels}
+
+        for kw in keywords:
+            text = kw.term
+            # Quick override for brand/competitor heuristics
+            low = text.lower()
+            if any(b in low for b in ['cubehq', 'cube hq']):
+                buckets['Brand & Company Terms'].append(kw)
+                continue
+            if any(c in low for c in ['reputation', 'birdeye', 'podium', 'compare', 'vs', 'alternative']):
+                buckets['Competitive Analysis'].append(kw)
+                continue
+
+            res = self.zero_shot(text, candidate_labels=labels, multi_label=True)
+            # Pick top label
+            top_label = res['labels'][0] if res and res.get('labels') else 'Core Business Intelligence'
+            buckets[top_label].append(kw)
+
+        ad_groups: List[AdGroup] = []
+        for name, kws in buckets.items():
+            if not kws:
+                continue
+            cpc_range = self._calculate_group_cpc_range(kws)
+            intent, desc = group_meta[name]
+            ad_groups.append(AdGroup(name=name, intent_category=intent, keywords=kws, suggested_cpc_range=cpc_range, theme_description=desc))
+
+        return ad_groups[:max_groups]
     
     def _create_enhanced_rule_based_groups(self, keywords: List[Keyword], max_groups: int) -> List[AdGroup]:
         """Enhanced rule-based grouping with AI-inspired logic"""
         
         groups = {
-            'Brand & Company Terms': {
+            'Brand Terms': {
                 'keywords': [],
                 'intent': 'Brand Terms',
-                'description': 'Keywords containing brand names and company-specific terms'
+                'description': 'Brand name variations and company-specific terms (CubeHQ, brand + modifiers)'
+            },
+            'Location-based Queries': {
+                'keywords': [],
+                'intent': 'Location-based Queries',
+                'description': 'Geographic-targeted business intelligence and analytics keywords'
             },
             'Core Business Intelligence': {
                 'keywords': [],
@@ -187,11 +231,6 @@ class HuggingFaceProcessor:
                 'keywords': [],
                 'intent': 'Product-specific Terms',
                 'description': 'Specific data analytics and dashboard-related keywords'
-            },
-            'Enterprise & B2B Focus': {
-                'keywords': [],
-                'intent': 'Category Terms',
-                'description': 'Enterprise-focused and B2B-targeted keywords'
             },
             'Long-Tail Opportunities': {
                 'keywords': [],
@@ -215,30 +254,28 @@ class HuggingFaceProcessor:
             word_count = len(keyword.term.split())
             search_volume = keyword.metrics.average_monthly_searches
             
-            # Smart grouping logic
-            if any(brand in term_lower for brand in ['cubehq', 'cube hq', 'cube']):
-                groups['Brand & Company Terms']['keywords'].append(keyword)
+            # Smart grouping logic - Brand Terms first (highest priority)
+            if any(brand in term_lower for brand in ['cubehq', 'cube hq', 'cube', 'login', 'demo', 'pricing', 'reviews', 'alternatives']) and any(context in term_lower for context in ['cubehq', 'cube']):
+                groups['Brand Terms']['keywords'].append(keyword)
                 
-            elif any(commercial in term_lower for commercial in ['buy', 'purchase', 'pricing', 'cost', 'service', 'company', 'provider', 'vendor']):
+            # Location-based queries (specific geographic terms)
+            elif any(location in term_lower for location in ['bengaluru', 'mumbai', 'delhi', 'hyderabad', 'bangalore', 'chennai', 'pune', 'kolkata']) or ' in ' in term_lower:
+                groups['Location-based Queries']['keywords'].append(keyword)
+                
+            elif any(commercial in term_lower for commercial in ['buy', 'purchase', 'pricing', 'cost', 'service', 'company', 'provider', 'vendor', 'subscription', 'plan']):
                 groups['Commercial Intent High-Value']['keywords'].append(keyword)
                 
-            elif any(bi_term in term_lower for bi_term in ['business intelligence', 'bi tool', 'bi platform', 'intelligence platform']):
+            elif any(bi_term in term_lower for bi_term in ['business intelligence', 'bi tool', 'bi platform', 'intelligence platform', 'bi software']):
                 groups['Core Business Intelligence']['keywords'].append(keyword)
                 
-            elif any(data_term in term_lower for data_term in ['data analytics', 'analytics platform', 'data visualization', 'dashboard', 'reporting']):
+            elif any(data_term in term_lower for data_term in ['data analytics', 'analytics platform', 'data visualization', 'dashboard', 'reporting', 'analytics software']):
                 groups['Data Analytics Solutions']['keywords'].append(keyword)
-                
-            elif any(enterprise in term_lower for enterprise in ['enterprise', 'b2b', 'business', 'corporate', 'organization']):
-                groups['Enterprise & B2B Focus']['keywords'].append(keyword)
                 
             elif word_count >= 4 or (search_volume < 1000 and keyword.metrics.competition_level == CompetitionLevel.LOW):
                 groups['Long-Tail Opportunities']['keywords'].append(keyword)
                 
-            elif any(competitor in term_lower for competitor in ['reputation', 'birdeye', 'podium', 'vs', 'compare', 'alternative']):
+            elif any(competitor in term_lower for competitor in ['reputation', 'birdeye', 'podium', 'vs', 'compare', 'alternative', 'competitor']):
                 groups['Competitive Analysis']['keywords'].append(keyword)
-                
-            elif any(technical in term_lower for technical in ['api', 'integration', 'automation', 'workflow', 'insights', 'metrics']):
-                groups['Technical Features']['keywords'].append(keyword)
                 
             else:
                 # Default to the most appropriate group based on search volume
