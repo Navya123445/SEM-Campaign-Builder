@@ -1,0 +1,231 @@
+ad_groups_breakdown:
+- ad_group_name: High Volume Generic
+  intent_category: High Volume Generic
+  keyword_count: 113
+  suggested_cpc_range: "\u20B90.66 - \u20B92.91"
+  top_keywords:
+  - keyword: predictive insights
+    relevance_score: 0.92
+    search_volume: 7596
+    suggested_match_type: phrase
+  - keyword: logosolutions by
+    relevance_score: 0.86
+    search_volume: 6512
+    suggested_match_type: phrase
+  - keyword: watch now
+    relevance_score: 0.84
+    search_volume: 6134
+    suggested_match_type: phrase
+  - keyword: search for
+    relevance_score: 0.83
+    search_volume: 5815
+    suggested_match_type: phrase
+  - keyword: online reputation
+    relevance_score: 0.8
+    search_volume: 5205
+    suggested_match_type: phrase
+  - keyword: predictive reporting
+    relevance_score: 0.79
+    search_volume: 7943
+    suggested_match_type: phrase
+  - keyword: dashboard software
+    relevance_score: 0.79
+    search_volume: 5023
+    suggested_match_type: phrase
+  - keyword: real-time insights
+    relevance_score: 0.78
+    search_volume: 7780
+    suggested_match_type: phrase
+  - keyword: sales 1
+    relevance_score: 0.78
+    search_volume: 4815
+    suggested_match_type: phrase
+  - keyword: business webinar
+    relevance_score: 0.77
+    search_volume: 4676
+    suggested_match_type: phrase
+- ad_group_name: Commercial Intent
+  intent_category: Commercial Intent
+  keyword_count: 37
+  suggested_cpc_range: "\u20B90.53 - \u20B92.49"
+  top_keywords:
+  - keyword: purchase enterprise dashboard
+    relevance_score: 0.67
+    search_volume: 2634
+    suggested_match_type: phrase
+  - keyword: predictive analytics buy
+    relevance_score: 0.66
+    search_volume: 2453
+    suggested_match_type: phrase
+  - keyword: purchase business automation
+    relevance_score: 0.64
+    search_volume: 2081
+    suggested_match_type: phrase
+  - keyword: purchase real-time analytics
+    relevance_score: 0.61
+    search_volume: 1567
+    suggested_match_type: phrase
+  - keyword: buy real-time analytics
+    relevance_score: 0.6
+    search_volume: 1323
+    suggested_match_type: phrase
+  - keyword: company size
+    relevance_score: 0.6
+    search_volume: 1206
+    suggested_match_type: phrase
+  - keyword: purchase business intelligence platform
+    relevance_score: 0.59
+    search_volume: 1165
+    suggested_match_type: exact
+  - keyword: business intelligence platform purchase
+    relevance_score: 0.59
+    search_volume: 1156
+    suggested_match_type: exact
+  - keyword: business intelligence platform buy
+    relevance_score: 0.58
+    search_volume: 959
+    suggested_match_type: exact
+  - keyword: buy data analytics software
+    relevance_score: 0.58
+    search_volume: 898
+    suggested_match_type: exact
+- ad_group_name: Product Features
+  intent_category: Product Features
+  keyword_count: 44
+  suggested_cpc_range: "\u20B90.77 - \u20B93.32"
+  top_keywords:
+  - keyword: data analytics
+    relevance_score: 0.49
+    search_volume: 1967
+    suggested_match_type: broad
+  - keyword: order predictive analytics
+    relevance_score: 0.48
+    search_volume: 1905
+    suggested_match_type: broad
+  - keyword: local enterprise dashboard
+    relevance_score: 0.48
+    search_volume: 1817
+    suggested_match_type: broad
+  - keyword: reputation online reputation
+    relevance_score: 0.47
+    search_volume: 1726
+    suggested_match_type: broad
+  - keyword: watch now login
+    relevance_score: 0.46
+    search_volume: 1524
+    suggested_match_type: broad
+  - keyword: sentiment throughout
+    relevance_score: 0.46
+    search_volume: 1429
+    suggested_match_type: broad
+  - keyword: businessgrow your business
+    relevance_score: 0.46
+    search_volume: 1384
+    suggested_match_type: broad
+  - keyword: data integration software
+    relevance_score: 0.46
+    search_volume: 1363
+    suggested_match_type: broad
+  - keyword: order business automation
+    relevance_score: 0.45
+    search_volume: 1334
+    suggested_match_type: broad
+  - keyword: compare real-time analytics
+    relevance_score: 0.45
+    search_volume: 1292
+    suggested_match_type: broad
+- ad_group_name: Long Tail
+  intent_category: Long Tail
+  keyword_count: 80
+  suggested_cpc_range: "\u20B90.59 - \u20B92.68"
+  top_keywords:
+  - keyword: order AI powered insights
+    relevance_score: 0.6
+    search_volume: 1360
+    suggested_match_type: exact
+  - keyword: best data visualization tool
+    relevance_score: 0.6
+    search_volume: 1359
+    suggested_match_type: exact
+  - keyword: business intelligence platform near me
+    relevance_score: 0.6
+    search_volume: 1338
+    suggested_match_type: exact
+  - keyword: data integration platform affordable
+    relevance_score: 0.6
+    search_volume: 1279
+    suggested_match_type: exact
+  - keyword: AI powered insights local
+    relevance_score: 0.6
+    search_volume: 1241
+    suggested_match_type: exact
+  - keyword: top business intelligence platform
+    relevance_score: 0.6
+    search_volume: 1214
+    suggested_match_type: exact
+  - keyword: data visualization tool order
+    relevance_score: 0.59
+    search_volume: 1130
+    suggested_match_type: exact
+  - keyword: top data integration platform
+    relevance_score: 0.59
+    search_volume: 1126
+    suggested_match_type: exact
+  - keyword: top data analytics software
+    relevance_score: 0.59
+    search_volume: 1123
+    suggested_match_type: exact
+  - keyword: affordable business intelligence solution
+    relevance_score: 0.59
+    search_volume: 1084
+    suggested_match_type: exact
+- ad_group_name: Low Competition
+  intent_category: Low Competition
+  keyword_count: 28
+  suggested_cpc_range: "\u20B90.25 - \u20B91.5"
+  top_keywords:
+  - keyword: local business automation
+    relevance_score: 0.63
+    search_volume: 1969
+    suggested_match_type: broad
+  - keyword: data integration solution
+    relevance_score: 0.63
+    search_volume: 1967
+    suggested_match_type: broad
+  - keyword: webinar dimensions
+    relevance_score: 0.63
+    search_volume: 1956
+    suggested_match_type: broad
+  - keyword: enterprise dashboard nearby
+    relevance_score: 0.63
+    search_volume: 1900
+    suggested_match_type: broad
+  - keyword: to main content
+    relevance_score: 0.63
+    search_volume: 1870
+    suggested_match_type: broad
+  - keyword: your customer s
+    relevance_score: 0.62
+    search_volume: 1786
+    suggested_match_type: broad
+  - keyword: affordable predictive analytics
+    relevance_score: 0.62
+    search_volume: 1776
+    suggested_match_type: broad
+  - keyword: login contact search
+    relevance_score: 0.62
+    search_volume: 1776
+    suggested_match_type: broad
+  - keyword: nearby business automation
+    relevance_score: 0.62
+    search_volume: 1770
+    suggested_match_type: broad
+  - keyword: journey watch now
+    relevance_score: 0.61
+    search_volume: 1536
+    suggested_match_type: broad
+keyword_analysis:
+  budget_allocation: 75000
+  target_conversion_rate: 0.02
+  total_ad_groups: 5
+  total_keywords: 302

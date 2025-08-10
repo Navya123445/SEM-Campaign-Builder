@@ -1,0 +1,69 @@
+ad_groups_breakdown:
+- ad_group_name: Core Business Intelligence
+  intent_category: Category Terms
+  keyword_count: 5
+  suggested_cpc_range: "\u20B90.25 - \u20B91.5"
+  top_keywords:
+  - keyword: Search volume
+    relevance_score: 0.9
+    search_volume: 3612
+    suggested_match_type: phrase
+  - keyword: (high range)
+    relevance_score: 0.89
+    search_volume: 3560
+    suggested_match_type: phrase
+  - keyword: State or Country
+    relevance_score: 0.83
+    search_volume: 2985
+    suggested_match_type: broad
+  - keyword: Is your website
+    relevance_score: 0.76
+    search_volume: 2373
+    suggested_match_type: broad
+  - keyword: All Industries
+    relevance_score: 0.75
+    search_volume: 2329
+    suggested_match_type: phrase
+- ad_group_name: Data Analytics Solutions
+  intent_category: Product-specific Terms
+  keyword_count: 4
+  suggested_cpc_range: "\u20B90.38 - \u20B91.75"
+  top_keywords:
+  - keyword: No Results
+    relevance_score: 0.71
+    search_volume: 1961
+    suggested_match_type: broad
+  - keyword: Invalid Url
+    relevance_score: 0.67
+    search_volume: 1587
+    suggested_match_type: broad
+  - keyword: Refine Your Search
+    relevance_score: 0.64
+    search_volume: 1344
+    suggested_match_type: broad
+  - keyword: Free Keyword Tool
+    relevance_score: 0.49
+    search_volume: 1654
+    suggested_match_type: broad
+- ad_group_name: Long-Tail Opportunities
+  intent_category: Long-Tail Informational Queries
+  keyword_count: 3
+  suggested_cpc_range: "\u20B90.25 - \u20B91.5"
+  top_keywords:
+  - keyword: '*Keyword or Website URL'
+    relevance_score: 0.65
+    search_volume: 1364
+    suggested_match_type: exact
+  - keyword: 'Choose an Industry (Optional):'
+    relevance_score: 0.57
+    search_volume: 701
+    suggested_match_type: exact
+  - keyword: performing at its best?
+    relevance_score: 0.57
+    search_volume: 683
+    suggested_match_type: exact
+keyword_analysis:
+  budget_allocation: 75000
+  target_conversion_rate: 0.02
+  total_ad_groups: 3
+  total_keywords: 12

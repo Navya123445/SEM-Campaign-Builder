@@ -1,0 +1,20 @@
+deliverable_1_summary:
+  ad_group_categories:
+  - Category Terms
+  - Product-specific Terms
+  - Long-Tail Informational Queries
+  campaign_name: SEM Campaign - Search
+  date_created: '2025-08-07'
+  key_metrics:
+    avg_keywords_per_group: 4.0
+    budget_allocated: "\u20B975,000.00"
+    estimated_avg_cpc: "\u20B90.94"
+    target_conversion_rate: 2.0%
+    total_ad_groups: 3
+    total_keywords: 12
+  next_steps:
+  - Review ad groups and keywords
+  - Set up Google Ads account structure
+  - Create ad copy for each ad group
+  - Proceed with Deliverable 2 (Performance Max themes)
+  status: COMPLETED

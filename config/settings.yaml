@@ -1,0 +1,28 @@
+# Application Settings
+
+# LLM Configuration
+llm_settings:
+  provider: "openai"
+  model: "gpt-3.5-turbo"
+  temperature: 0.3
+  max_tokens: 2000
+
+# Web Scraping Settings
+scraping:
+  timeout: 30
+  delay_between_requests: 2
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+
+# Campaign Structure
+campaign_structure:
+  max_ad_groups: 15
+  max_keywords_per_group: 20
+  match_type_distribution:
+    exact: 0.3
+    phrase: 0.4
+    broad: 0.3
+
+# Alternative Keyword Research (bypassing Google Keyword Planner API)
+keyword_research:
+  wordstream_enabled: true
+  manual_expansion: true

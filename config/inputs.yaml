@@ -1,0 +1,50 @@
+# SEM Campaign Builder - Input Configuration
+# Fill in your specific details below
+
+# Step 1: Input Collection (from PDF)
+brand_inputs:
+  brand_website: "https://www.cubehq.ai"  # Replace with actual URL
+  competitor_websites:
+    - "https://reputation.com/"  # Replace with real competitor
+    - "https://birdeye.com/"  # Replace with real competitor
+  service_locations:
+    - "Bengaluru"
+    - "Mumbai"
+    - "Delhi"
+    - "Hyderabad"
+
+# Ad Budgets (in INR)
+ad_budgets:
+  shopping_ads_budget: 50000
+  search_ads_budget: 75000
+  pmax_ads_budget: 100000
+
+# Step 2: Keyword Discovery Method
+keyword_discovery:
+  option: 1  # 1 = Use seed keywords, 2 = Analyze website content
+  seed_keywords:
+    - "business intelligence platform"
+    - "data analytics software"
+    - "AI powered insights"
+    - "enterprise dashboard"
+    - "data visualization tool"
+    - "business automation"
+    - "predictive analytics"
+    - "data integration platform"
+    - "business intelligence solution"
+    - "real-time analytics"
+
+# Step 3: Filtering Settings
+filtering_criteria:
+  min_search_volume: 500
+
+# Step 4: Evaluation Metrics (from PDF)
+evaluation_metrics:
+  primary_metrics:
+    - "Average Monthly Searches"
+    - "Top of Page Bid (Low & High)"
+    - "Competition Level"
+
+# Conversion Rate (from PDF requirement)
+conversion_settings:
+  target_conversion_rate: 0.02  # 2%

@@ -1,0 +1,111 @@
+ad_groups:
+- intent_category: Category Terms
+  keyword_count: 5
+  keywords:
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: phrase
+    relevance_score: 0.9
+    search_volume: 3612
+    term: Search volume
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: phrase
+    relevance_score: 0.89
+    search_volume: 3560
+    term: (high range)
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.83
+    search_volume: 2985
+    term: State or Country
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.76
+    search_volume: 2373
+    term: Is your website
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: phrase
+    relevance_score: 0.75
+    search_volume: 2329
+    term: All Industries
+  name: Core Business Intelligence
+  suggested_cpc_high: 1.5
+  suggested_cpc_low: 0.25
+  theme_description: Primary business intelligence and analytics keywords
+- intent_category: Product-specific Terms
+  keyword_count: 4
+  keywords:
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.71
+    search_volume: 1961
+    term: No Results
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.67
+    search_volume: 1587
+    term: Invalid Url
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: broad
+    relevance_score: 0.64
+    search_volume: 1344
+    term: Refine Your Search
+  - bid_high: 2.5
+    bid_low: 0.75
+    competition: medium
+    match_type: broad
+    relevance_score: 0.49
+    search_volume: 1654
+    term: Free Keyword Tool
+  name: Data Analytics Solutions
+  suggested_cpc_high: 1.75
+  suggested_cpc_low: 0.38
+  theme_description: Specific data analytics and dashboard-related keywords
+- intent_category: Long-Tail Informational Queries
+  keyword_count: 3
+  keywords:
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.65
+    search_volume: 1364
+    term: '*Keyword or Website URL'
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.57
+    search_volume: 701
+    term: 'Choose an Industry (Optional):'
+  - bid_high: 1.5
+    bid_low: 0.25
+    competition: low
+    match_type: exact
+    relevance_score: 0.57
+    search_volume: 683
+    term: performing at its best?
+  name: Long-Tail Opportunities
+  suggested_cpc_high: 1.5
+  suggested_cpc_low: 0.25
+  theme_description: Specific, lower competition long-tail keywords
+campaign_name: SEM Campaign - Search
+target_conversion_rate: 0.02
+total_ad_groups: 3
+total_budget: 75000
+total_keywords: 12
