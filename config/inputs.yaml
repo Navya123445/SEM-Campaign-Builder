@@ -3,21 +3,20 @@
 
 # Step 1: Input Collection (from PDF)
 brand_inputs:
-  brand_website: "https://www.cubehq.ai"  # Replace with actual URL
+  brand_website: "https://www.cubehq.ai"  
   competitor_websites:
-    - "https://reputation.com/"  # Replace with real competitor
-    - "https://birdeye.com/"  # Replace with real competitor
+    - "https://yext.com/"  
   service_locations:
     - "Bengaluru"
     - "Mumbai"
     - "Delhi"
     - "Hyderabad"
 
-# Ad Budgets (in INR)
+# Ad Budgets (in $)
 ad_budgets:
-  shopping_ads_budget: 50000
-  search_ads_budget: 75000
-  pmax_ads_budget: 100000
+  shopping_ads_budget: 1000
+  search_ads_budget: 2500
+  pmax_ads_budget: 1500
 
 # Step 2: Keyword Discovery Method
 keyword_discovery:

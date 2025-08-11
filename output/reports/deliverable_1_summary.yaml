@@ -1,22 +1,15 @@
 deliverable_1_summary:
   ad_group_categories:
-  - Brand Terms
-  - Category Terms
   - Commercial Intent
-  - Product-specific Terms
-  - Category Terms
-  - Long-Tail Informational Queries
-  - Competitor Terms
-  - Product-specific Terms
   campaign_name: SEM Campaign - Search
   date_created: '2025-08-07'
   key_metrics:
-    avg_keywords_per_group: 22.2
-    budget_allocated: "\u20B975,000.00"
-    estimated_avg_cpc: "\u20B91.20"
+    avg_keywords_per_group: 19.0
+    budget_allocated: $2,500.00
+    estimated_avg_cpc: $4.38
     target_conversion_rate: 2.0%
-    total_ad_groups: 8
-    total_keywords: 178
+    total_ad_groups: 1
+    total_keywords: 19
   next_steps:
   - Review ad groups and keywords
   - Set up advertising account structure

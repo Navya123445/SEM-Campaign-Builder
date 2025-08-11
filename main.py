@@ -41,10 +41,10 @@ class SEMCampaignBuilder:
         # Validate inputs
         self._validate_inputs()
         
-        # Initialize components
+        # Initialize components with inputs for dynamic brand/location access
         self.website_analyzer = WebsiteAnalyzer(self.settings['llm_settings'])
-        self.keyword_researcher = KeywordResearcher(self.settings)
-        self.keyword_processor = HuggingFaceProcessor(self.settings)
+        self.keyword_researcher = KeywordResearcher(self.settings, self.config)
+        self.keyword_processor = HuggingFaceProcessor(self.settings, self.config)
         
         print("✅ Initialization complete!")
     
@@ -163,52 +163,106 @@ class SEMCampaignBuilder:
                 competitor_keywords = self.keyword_researcher.research_keywords_from_website(competitor_url)
                 all_keywords.extend(competitor_keywords)
         
-        # Location-based expansion
-        try:
-            service_locations = self.config['brand_inputs'].get('service_locations', [])
-            if service_locations:
-                print("   Generating location-based keyword variants...")
-                base_terms = [kw.get('keyword', '') for kw in all_keywords if kw.get('keyword')] 
-                base_terms = list({t.strip() for t in base_terms})[:20]
-                location_variants = self.keyword_researcher.generate_location_keywords(base_terms, service_locations)
-                all_keywords.extend(location_variants)
-                print(f"   ✅ Added {len(location_variants)} location-specific keywords")
-        except Exception as _:
-            print("   ⚠️  Location-based expansion failed; continuing without it")
+        # Skip location-based expansion to preserve real data focus
+        print("   🎯 Skipping location expansion to focus on real WordStream data")
+        print("   📝 Location targeting will be handled at campaign level")
         
         print(f"✅ Keyword discovery complete: {len(all_keywords)} total keywords found")
         return all_keywords
     
     def _consolidate_and_filter_keywords(self, raw_keywords: List[Dict]) -> List[Dict]:
-        """Step 3: Keyword Consolidation and Filtering (PDF)"""
+        """Step 3: Keyword Consolidation and Filtering (PDF) - Prioritize Real Data"""
         
         print("\n🔍 Step 3: Keyword Consolidation and Filtering")
         print("-" * 40)
         
-        min_volume = self.config['filtering_criteria']['min_search_volume']
-        print(f"🔸 Filtering keywords with search volume < {min_volume}")
+        # Use minimal threshold to preserve real WordStream data
+        config_min_volume = self.config['filtering_criteria']['min_search_volume'] 
+        min_volume = 100  # Override to preserve real data
+        print(f"🔸 Using minimal threshold ({min_volume}) to preserve real WordStream data")
+        print(f"🔸 Config threshold was: {config_min_volume} (ignored for real data preservation)")
         
-        # Remove duplicates
-        seen_keywords = set()
+        # Separate real vs estimated data
+        real_keywords = [kw for kw in raw_keywords if kw.get('data_source') == 'wordstream_real']
+        estimated_keywords = [kw for kw in raw_keywords if kw.get('data_source') == 'estimated']
+        other_keywords = [kw for kw in raw_keywords if 'data_source' not in kw]
+        
+        print(f"🎯 Real WordStream data: {len(real_keywords)} keywords")
+        print(f"📝 Estimated data: {len(estimated_keywords)} keywords") 
+        print(f"🔄 Other data: {len(other_keywords)} keywords")
+        
+        # Show volume distribution of real keywords
+        if real_keywords:
+            high_volume = [kw for kw in real_keywords if kw.get('search_volume', 0) >= 10000]
+            medium_volume = [kw for kw in real_keywords if 1000 <= kw.get('search_volume', 0) < 10000] 
+            low_volume = [kw for kw in real_keywords if 100 <= kw.get('search_volume', 0) < 1000]
+            very_low = [kw for kw in real_keywords if kw.get('search_volume', 0) < 100]
+            
+            print(f"   📊 Real data volume distribution:")
+            print(f"      - High volume (10K+): {len(high_volume)} keywords")
+            print(f"      - Medium volume (1K-10K): {len(medium_volume)} keywords") 
+            print(f"      - Low volume (100-1K): {len(low_volume)} keywords")
+            print(f"      - Very low (<100): {len(very_low)} keywords")
+        
+        # Remove duplicates - prioritize real data
+        seen_keywords = {}
         unique_keywords = []
         
-        for kw in raw_keywords:
+        # Process real data first (highest priority)
+        for kw in real_keywords:
             keyword_text = kw.get('keyword', '').lower().strip()
-            
             if keyword_text and keyword_text not in seen_keywords:
-                seen_keywords.add(keyword_text)
+                seen_keywords[keyword_text] = True
                 unique_keywords.append(kw)
         
-        # Filter by search volume
-        filtered_keywords = [
-            kw for kw in unique_keywords 
-            if kw.get('search_volume', 0) >= min_volume
-        ]
+        # Process other data second
+        for kw in other_keywords:
+            keyword_text = kw.get('keyword', '').lower().strip()
+            if keyword_text and keyword_text not in seen_keywords:
+                seen_keywords[keyword_text] = True
+                unique_keywords.append(kw)
+        
+        # Process estimated data last (lowest priority)
+        for kw in estimated_keywords:
+            keyword_text = kw.get('keyword', '').lower().strip()
+            if keyword_text and keyword_text not in seen_keywords:
+                seen_keywords[keyword_text] = True
+                unique_keywords.append(kw)
+        
+        # Apply smart filtering - preserve real data, filter estimated data
+        filtered_keywords = []
+        for kw in unique_keywords:
+            search_vol = kw.get('search_volume', 0)
+            data_source = kw.get('data_source', '')
+            
+            # Keep almost all real WordStream data
+            if data_source == 'wordstream_real':
+                if search_vol >= 100:  # Very low threshold for real data
+                    filtered_keywords.append(kw)
+                else:
+                    print(f"   ⚠️ Filtered low-volume real keyword: {kw.get('keyword')} ({search_vol} searches)")
+            # Keep essential other data (brand terms, etc.) 
+            elif 'data_source' not in kw:
+                if search_vol >= 1000:  # Higher threshold for untagged data
+                    filtered_keywords.append(kw)
+            # Be very selective with estimated data
+            elif data_source == 'estimated':
+                if search_vol >= 5000:  # High threshold for estimated data
+                    filtered_keywords.append(kw)
+                else:
+                    pass  # Filter out most estimated keywords
+        
+        # Count final data sources
+        final_real = len([kw for kw in filtered_keywords if kw.get('data_source') == 'wordstream_real'])
+        final_estimated = len([kw for kw in filtered_keywords if kw.get('data_source') == 'estimated'])
+        final_other = len(filtered_keywords) - final_real - final_estimated
         
         print(f"   - Original keywords: {len(raw_keywords)}")
         print(f"   - After deduplication: {len(unique_keywords)}")
         print(f"   - After volume filtering: {len(filtered_keywords)}")
-        print(f"✅ Consolidation and filtering complete")
+        print(f"   - Final real data: {final_real} keywords ({final_real/len(filtered_keywords)*100:.1f}%)")
+        print(f"   - Final estimated data: {final_estimated} keywords ({final_estimated/len(filtered_keywords)*100:.1f}%)")
+        print(f"✅ Consolidation and filtering complete - Real data prioritized")
         
         return filtered_keywords
     
@@ -359,7 +413,7 @@ class SEMCampaignBuilder:
                 'ad_group_name': ag.name,
                 'intent_category': ag.intent_category,
                 'keyword_count': len(ag.keywords),
-                'suggested_cpc_range': f"₹{ag.suggested_cpc_range[0]} - ₹{ag.suggested_cpc_range[1]}",
+                'suggested_cpc_range': f"${ag.suggested_cpc_range[0]} - ${ag.suggested_cpc_range[1]}",
                 'top_keywords': []
             }
             
@@ -401,8 +455,8 @@ class SEMCampaignBuilder:
                     'total_ad_groups': len(campaign.ad_groups),
                     'total_keywords': total_keywords,
                     'avg_keywords_per_group': round(avg_keywords_per_group, 1),
-                    'budget_allocated': f"₹{campaign.total_budget:,.2f}",
-                    'estimated_avg_cpc': f"₹{avg_cpc:.2f}",
+                    'budget_allocated': f"${campaign.total_budget:,.2f}",
+                    'estimated_avg_cpc': f"${avg_cpc:.2f}",
                     'target_conversion_rate': f"{campaign.target_conversion_rate*100}%"
                 },
                 'ad_group_categories': [ag.intent_category for ag in campaign.ad_groups],
@@ -422,23 +476,27 @@ def main():
         # Initialize builder
         builder = SEMCampaignBuilder()
         
-        # Execute Deliverable 1
+        # Execute Deliverable 1 and get the processed keywords
         campaign = builder.run_deliverable_1()
-
-        # For PMax and Shopping we need processed keywords. Recompute minimal pipeline pieces.
-        raw_keywords = builder._execute_keyword_discovery()
-        filtered = builder._consolidate_and_filter_keywords(raw_keywords)
-        processed = builder._process_keywords(filtered)
+        
+        # Get processed keywords from the campaign instead of re-running discovery
+        print("\n🔄 Extracting processed keywords from Deliverable 1 for PMax and Shopping...")
+        processed_keywords = []
+        for ad_group in campaign.ad_groups:
+            for keyword in ad_group.keywords:
+                processed_keywords.append(keyword)
+        
+        print(f"✅ Reusing {len(processed_keywords)} processed keywords from Deliverable 1")
 
         # Execute Deliverable 2: PMax Themes
-        builder.run_deliverable_2_pmax(processed)
+        builder.run_deliverable_2_pmax(processed_keywords)
 
-        # Execute Deliverable 3: Shopping bids
-        builder.run_deliverable_3_shopping(processed)
+        # Execute Deliverable 3: Shopping bids  
+        builder.run_deliverable_3_shopping(processed_keywords)
         
         print(f"\n🎉 SUCCESS! Deliverables 1-3 completed successfully!")
         print(f"📊 Generated {len(campaign.ad_groups)} ad groups with {sum(len(ag.keywords) for ag in campaign.ad_groups)} keywords")
-        print(f"💰 Budget: ₹{campaign.total_budget:,.2f}")
+        print(f"💰 Budget: ${campaign.total_budget:,.2f}")
         print(f"📁 Check 'output/' folder for detailed results (campaigns, reports)")
         print(f"\n⏰ Ready for 2-day priority submission!")
         

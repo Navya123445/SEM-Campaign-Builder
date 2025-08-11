@@ -28,8 +28,8 @@ class SearchCampaignGenerator:
         print(f"✅ Campaign created:")
         print(f"   - Ad Groups: {len(optimized_ad_groups)}")
         print(f"   - Total Keywords: {total_keywords}")
-        print(f"   - Budget: ₹{self.budget:,.2f}")
-        print(f"   - Estimated Avg CPC: ₹{avg_cpc:.2f}")
+        print(f"   - Budget: ${self.budget:,.2f}")
+        print(f"   - Estimated Avg CPC: ${avg_cpc:.2f}")
         
         return campaign
     
@@ -88,23 +88,85 @@ class SearchCampaignGenerator:
         return optimized_groups
     
     def _prioritize_ad_groups(self, ad_groups: List[AdGroup]) -> List[AdGroup]:
-        """Prioritize ad groups by performance potential"""
+        """Prioritize ad groups for maximum ROAS using advanced scoring"""
         
-        def group_score(ad_group: AdGroup) -> float:
-            if not ad_group.keywords:
-                return 0.0
-            
-            # Calculate average relevance score
-            avg_relevance = sum(kw.relevance_score for kw in ad_group.keywords) / len(ad_group.keywords)
-            
-            # Calculate efficiency (lower CPC is better)
-            avg_cpc = (ad_group.suggested_cpc_range[0] + ad_group.suggested_cpc_range[1]) / 2
-            efficiency = max(0, (5.0 - avg_cpc) / 5.0)  # Normalize assuming max CPC of 5
-            
-            # Combine metrics
-            return (avg_relevance * 0.7) + (efficiency * 0.3)
+        # Calculate ROAS scores for each ad group
+        scored_ad_groups = []
+        for ag in ad_groups:
+            roas_score = self._calculate_ad_group_roas_score(ag)
+            scored_ad_groups.append((ag, roas_score))
         
-        return sorted(ad_groups, key=group_score, reverse=True)
+        # Sort by ROAS score (highest first)
+        scored_ad_groups.sort(key=lambda x: x[1], reverse=True)
+        
+        # Print prioritization results
+        print(f"📊 Ad Group ROAS Prioritization:")
+        for ag, score in scored_ad_groups:
+            print(f"   - {ag.name}: {score:.2f} ROAS score ({len(ag.keywords)} keywords)")
+        
+        return [ag for ag, score in scored_ad_groups]
+    
+    def _calculate_ad_group_roas_score(self, ad_group: AdGroup) -> float:
+        """
+        Calculate ROAS potential score for an ad group (0.0 to 1.0)
+        
+        Factors:
+        - Intent Category (brand = highest, commercial = high, informational = lower)
+        - Keyword Volume (total search potential)
+        - CPC Efficiency (lower costs = better ROAS)
+        - Keyword Count (diversification)
+        """
+        if not ad_group.keywords:
+            return 0.0
+        
+        # Intent Category Score (0.0-0.4)
+        intent = ad_group.intent_category.lower()
+        if 'brand' in intent:
+            intent_score = 0.4  # Highest converting
+        elif 'commercial' in intent or 'competitor' in intent:
+            intent_score = 0.35  # High converting
+        elif 'category' in intent or 'product' in intent:
+            intent_score = 0.3  # Good converting
+        elif 'location' in intent:
+            intent_score = 0.25  # Moderate converting
+        else:  # long-tail, informational
+            intent_score = 0.15  # Lower converting
+        
+        # Volume Score (0.0-0.3)
+        total_volume = sum(kw.metrics.average_monthly_searches for kw in ad_group.keywords)
+        if total_volume >= 100000:
+            volume_score = 0.3
+        elif total_volume >= 50000:
+            volume_score = 0.25
+        elif total_volume >= 10000:
+            volume_score = 0.2
+        else:
+            volume_score = 0.1
+        
+        # CPC Efficiency Score (0.0-0.2)
+        avg_cpc = (ad_group.suggested_cpc_range[0] + ad_group.suggested_cpc_range[1]) / 2
+        if avg_cpc <= 1.0:
+            efficiency_score = 0.2  # Very efficient
+        elif avg_cpc <= 2.0:
+            efficiency_score = 0.15  # Efficient
+        elif avg_cpc <= 4.0:
+            efficiency_score = 0.1  # Moderate
+        else:
+            efficiency_score = 0.05  # Expensive
+        
+        # Diversification Score (0.0-0.1)
+        keyword_count = len(ad_group.keywords)
+        if keyword_count >= 20:
+            diversification_score = 0.1
+        elif keyword_count >= 10:
+            diversification_score = 0.08
+        elif keyword_count >= 5:
+            diversification_score = 0.05
+        else:
+            diversification_score = 0.02
+        
+        total_score = intent_score + volume_score + efficiency_score + diversification_score
+        return min(total_score, 1.0)
     
     def _calculate_average_cpc(self, ad_groups: List[AdGroup]) -> float:
         """Calculate weighted average CPC across all ad groups"""

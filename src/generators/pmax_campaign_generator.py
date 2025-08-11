@@ -22,10 +22,12 @@ class PMaxCampaignGenerator:
 
         # Product Category Themes
         category_terms = [
-            'analytics', 'dashboard', 'reporting', 'visualization', 'bi', 'business intelligence', 'platform', 'software',
+            'platform', 'software', 'tools', 'ai', 'marketing', 
+            'analytics', 'dashboard', 'reporting', 'automation'
         ]
+
         # Use-case Based Themes
-        usecase_terms = ['automation', 'insights', 'forecast', 'predictive', 'integration']
+        usecase_terms = ['automation', 'insights', 'campaigns', 'social media', 'advertising', 'lead generation', 'customer service']
         # Demographic Themes
         demographic_terms = ['enterprise', 'b2b', 'startup', 'small business', 'corporate']
         # Seasonal/Event Themes (generic placeholders)
@@ -54,5 +56,3 @@ class PMaxCampaignGenerator:
             themes[k] = dedup[:15]
 
         return dict(themes)
-
-

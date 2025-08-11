@@ -24,4 +24,27 @@ campaign_structure:
 
 # Keyword Research Settings
 keyword_research:
-  manual_expansion: true
+  manual_expansion: false          # Disable deterministic expansion
+  wordstream_scraping:
+    enabled: true
+    scrape_brand_website: true     # Scrape brand website once for base keywords
+    scrape_competitors: true       # Scrape competitor websites 
+    fallback_to_deterministic: false  # Don't fall back to estimates
+    save_scraped_data: true
+  data_priority:
+    real_data_only: true           # Use ONLY real WordStream data  
+    minimal_estimates: false       # No estimates - real data only
+  
+# WordStream Scraper Settings
+wordstream_scraper:
+  delays:
+    page_load: 5
+    form_fill: 5
+    after_submit: 5
+    after_modal: 5
+    after_continue: 5
+    results_load: 5
+    after_extraction: 5
+  extraction:
+    page_limit: 1  # Only extract from first page
+    use_default_location: true

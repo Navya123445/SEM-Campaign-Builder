@@ -6,8 +6,9 @@ from src.models.keyword import Keyword, AdGroup, MatchType, CompetitionLevel
 
 
 class HuggingFaceProcessor:
-    def __init__(self, settings: Dict):
+    def __init__(self, settings: Dict, inputs: Dict = None):
         self.settings = settings
+        self.inputs = inputs or {}  # Store inputs for dynamic brand/location detection
         print("🤗 Initializing Hugging Face zero-shot classifier for grouping...")
         
         self.zero_shot = None
@@ -255,11 +256,15 @@ class HuggingFaceProcessor:
             search_volume = keyword.metrics.average_monthly_searches
             
             # Smart grouping logic - Brand Terms first (highest priority)
-            if any(brand in term_lower for brand in ['cubehq', 'cube hq', 'cube', 'login', 'demo', 'pricing', 'reviews', 'alternatives']) and any(context in term_lower for context in ['cubehq', 'cube']):
+            # Extract brand name dynamically from inputs
+            brand_website = self.inputs.get('brand_inputs', {}).get('brand_website', 'https://cubehq.ai/')
+            brand_keywords = self._extract_brand_detection_terms(brand_website)
+            
+            if any(brand in term_lower for brand in brand_keywords):
                 groups['Brand Terms']['keywords'].append(keyword)
                 
             # Location-based queries (specific geographic terms)
-            elif any(location in term_lower for location in ['bengaluru', 'mumbai', 'delhi', 'hyderabad', 'bangalore', 'chennai', 'pune', 'kolkata']) or ' in ' in term_lower:
+            elif any(location.lower() in term_lower for location in self._get_dynamic_locations()) or ' in ' in term_lower:
                 groups['Location-based Queries']['keywords'].append(keyword)
                 
             elif any(commercial in term_lower for commercial in ['buy', 'purchase', 'pricing', 'cost', 'service', 'company', 'provider', 'vendor', 'subscription', 'plan']):
@@ -321,3 +326,39 @@ class HuggingFaceProcessor:
         ) / total_volume
         
         return (round(weighted_low, 2), round(weighted_high, 2))
+    
+    def _extract_brand_detection_terms(self, brand_website: str) -> List[str]:
+        """Extract brand detection terms from brand website URL"""
+        brand_terms = []
+        
+        if 'cubehq' in brand_website.lower():
+            brand_terms = ['cubehq', 'cube hq', 'cube', 'login', 'demo', 'pricing', 'reviews', 'alternatives']
+        elif 'yext' in brand_website.lower():
+            brand_terms = ['yext', 'yext platform', 'yext login', 'yext demo', 'yext pricing', 'yext reviews']
+        else:
+            # Generic extraction from domain name
+            from urllib.parse import urlparse
+            domain = urlparse(brand_website).netloc.replace('www.', '')
+            brand_name = domain.split('.')[0].lower()
+            brand_terms = [brand_name, f"{brand_name} platform", f"{brand_name} software", f"{brand_name} login", f"{brand_name} pricing"]
+            
+        return brand_terms
+    
+    def _get_dynamic_locations(self) -> List[str]:
+        """Get dynamic locations from inputs.yaml"""
+        input_locations = self.inputs.get('brand_inputs', {}).get('service_locations', [])
+        
+        # Add common variations and aliases
+        all_locations = []
+        for location in input_locations:
+            all_locations.append(location.lower())
+            if location.lower() == 'bengaluru':
+                all_locations.append('bangalore')
+            elif location.lower() == 'mumbai':
+                all_locations.append('bombay')
+                
+        # Add fallback if no locations in inputs
+        if not all_locations:
+            all_locations = ['bengaluru', 'mumbai', 'delhi', 'hyderabad', 'bangalore', 'chennai', 'pune', 'kolkata']
+            
+        return all_locations

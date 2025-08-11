@@ -1,270 +1,51 @@
 ad_groups_breakdown:
-- ad_group_name: Brand & Company Terms
-  intent_category: Brand Terms
-  keyword_count: 13
-  suggested_cpc_range: "\u20B90.35 - \u20B91.7"
-  top_keywords:
-  - keyword: cubehq dashboard
-    relevance_score: 0.91
-    search_volume: 3990
-    suggested_match_type: exact
-  - keyword: cubehq business intelligence
-    relevance_score: 0.86
-    search_volume: 1410
-    suggested_match_type: exact
-  - keyword: cubehq analytics
-    relevance_score: 0.86
-    search_volume: 2699
-    suggested_match_type: exact
-  - keyword: cubehq ai
-    relevance_score: 0.84
-    search_volume: 7447
-    suggested_match_type: exact
-  - keyword: cubehq platform
-    relevance_score: 0.78
-    search_volume: 4243
-    suggested_match_type: exact
-  - keyword: cubehq data platform
-    relevance_score: 0.75
-    search_volume: 893
-    suggested_match_type: exact
-  - keyword: cubehq software
-    relevance_score: 0.74
-    search_volume: 3106
-    suggested_match_type: exact
-  - keyword: cubehq login
-    relevance_score: 0.72
-    search_volume: 4166
-    suggested_match_type: exact
-  - keyword: cubehq pricing
-    relevance_score: 0.7
-    search_volume: 3590
-    suggested_match_type: exact
-  - keyword: cubehq demo
-    relevance_score: 0.68
-    search_volume: 3153
-    suggested_match_type: exact
-- ad_group_name: Core Business Intelligence
-  intent_category: Category Terms
-  keyword_count: 5
-  suggested_cpc_range: "\u20B90.41 - \u20B91.82"
-  top_keywords:
-  - keyword: local data visualization tool
-    relevance_score: 0.67
-    search_volume: 1439
-    suggested_match_type: exact
-  - keyword: best data visualization tool
-    relevance_score: 0.67
-    search_volume: 1268
-    suggested_match_type: exact
-  - keyword: feedback data across
-    relevance_score: 0.56
-    search_volume: 2738
-    suggested_match_type: broad
-  - keyword: data along
-    relevance_score: 0.55
-    search_volume: 2367
-    suggested_match_type: phrase
-  - keyword: data along with
-    relevance_score: 0.48
-    search_volume: 729
-    suggested_match_type: broad
-- ad_group_name: Commercial Intent High-Value
+- ad_group_name: Commercial Intent High-Value (Optimized)
   intent_category: Commercial Intent
-  keyword_count: 74
-  suggested_cpc_range: "\u20B90.61 - \u20B92.23"
+  keyword_count: 19
+  suggested_cpc_range: $0.52 - $8.24
   top_keywords:
-  - keyword: delhi analytics platform
-    relevance_score: 0.77
-    search_volume: 2538
+  - keyword: digital marketing
+    relevance_score: 0.63
+    search_volume: 368000
+    suggested_match_type: phrase
+  - keyword: marketing digital marketing
+    relevance_score: 0.63
+    search_volume: 368000
     suggested_match_type: broad
-  - keyword: hyderabad bi software
-    relevance_score: 0.74
-    search_volume: 1800
+  - keyword: digital marketing marketing
+    relevance_score: 0.63
+    search_volume: 368000
     suggested_match_type: broad
-  - keyword: analytics solutions mumbai
-    relevance_score: 0.73
-    search_volume: 2748
-    suggested_match_type: broad
-  - keyword: affordable business intelligence platform
-    relevance_score: 0.72
-    search_volume: 1399
-    suggested_match_type: exact
-  - keyword: affordable business intelligence solution
-    relevance_score: 0.72
-    search_volume: 1355
-    suggested_match_type: exact
-  - keyword: business intelligence platform top
-    relevance_score: 0.7
-    search_volume: 887
-    suggested_match_type: exact
-  - keyword: bengaluru business intelligence
-    relevance_score: 0.7
-    search_volume: 2409
-    suggested_match_type: broad
-  - keyword: bengaluru bi software
-    relevance_score: 0.7
-    search_volume: 704
-    suggested_match_type: broad
-  - keyword: top business intelligence solution
-    relevance_score: 0.69
-    search_volume: 669
-    suggested_match_type: exact
-  - keyword: best business intelligence platform
-    relevance_score: 0.69
-    search_volume: 649
-    suggested_match_type: exact
-- ad_group_name: Data Analytics Solutions
-  intent_category: Product-specific Terms
-  keyword_count: 46
-  suggested_cpc_range: "\u20B91.02 - \u20B93.04"
-  top_keywords:
-  - keyword: bengaluru analytics platform
-    relevance_score: 0.78
-    search_volume: 2950
-    suggested_match_type: broad
-  - keyword: mumbai analytics platform
-    relevance_score: 0.77
-    search_volume: 2733
-    suggested_match_type: broad
-  - keyword: business intelligence solution top
-    relevance_score: 0.72
-    search_volume: 1450
-    suggested_match_type: exact
-  - keyword: best business intelligence solution
-    relevance_score: 0.72
-    search_volume: 1231
-    suggested_match_type: exact
-  - keyword: business intelligence solution local
-    relevance_score: 0.72
-    search_volume: 1197
-    suggested_match_type: exact
-  - keyword: delhi bi software
-    relevance_score: 0.71
-    search_volume: 1140
-    suggested_match_type: broad
-  - keyword: business intelligence solution best
-    relevance_score: 0.71
-    search_volume: 1099
-    suggested_match_type: exact
-  - keyword: business intelligence solution near me
-    relevance_score: 0.71
-    search_volume: 1013
-    suggested_match_type: exact
-  - keyword: cheap business intelligence solution
-    relevance_score: 0.7
-    search_volume: 842
-    suggested_match_type: exact
-  - keyword: local business intelligence solution
-    relevance_score: 0.7
-    search_volume: 767
-    suggested_match_type: exact
-- ad_group_name: Enterprise & B2B Focus
-  intent_category: Category Terms
-  keyword_count: 5
-  suggested_cpc_range: "\u20B90.25 - \u20B91.5"
-  top_keywords:
-  - keyword: cheap predictive analytics
-    relevance_score: 0.65
-    search_volume: 2496
-    suggested_match_type: broad
-  - keyword: data driven
+  - keyword: marketing tools for business
     relevance_score: 0.57
-    search_volume: 2905
+    search_volume: 27100
+    suggested_match_type: exact
+  - keyword: marketing tools
+    relevance_score: 0.55
+    search_volume: 33100
     suggested_match_type: phrase
-  - keyword: 3rd party data
-    relevance_score: 0.51
-    search_volume: 1464
-    suggested_match_type: broad
-  - keyword: data driven research
-    relevance_score: 0.51
-    search_volume: 1449
-    suggested_match_type: broad
-  - keyword: local AI powered insights
-    relevance_score: 0.49
-    search_volume: 957
-    suggested_match_type: exact
-- ad_group_name: Long-Tail Opportunities
-  intent_category: Long-Tail Informational Queries
-  keyword_count: 4
-  suggested_cpc_range: "\u20B90.35 - \u20B91.7"
-  top_keywords:
-  - keyword: real-time analytics near me
-    relevance_score: 0.6
-    search_volume: 1077
-    suggested_match_type: exact
-  - keyword: AI powered insights near me
-    relevance_score: 0.49
-    search_volume: 915
-    suggested_match_type: exact
-  - keyword: platform turns every
-    relevance_score: 0.46
-    search_volume: 996
-    suggested_match_type: broad
-  - keyword: property managementincrease resident
-    relevance_score: 0.43
-    search_volume: 1876
-    suggested_match_type: broad
-- ad_group_name: Competitive Analysis
-  intent_category: Competitor Terms
-  keyword_count: 2
-  suggested_cpc_range: "\u20B90.25 - \u20B91.5"
-  top_keywords:
-  - keyword: from competitive data
+  - keyword: marketing and digital marketing
     relevance_score: 0.53
-    search_volume: 1927
-    suggested_match_type: broad
-  - keyword: using reputation management
-    relevance_score: 0.46
-    search_volume: 2621
-    suggested_match_type: broad
-- ad_group_name: Technical Features
-  intent_category: Product-specific Terms
-  keyword_count: 29
-  suggested_cpc_range: "\u20B90.47 - \u20B91.93"
-  top_keywords:
-  - keyword: mumbai bi software
-    relevance_score: 0.76
-    search_volume: 2268
-    suggested_match_type: broad
-  - keyword: business intelligence platform near me
-    relevance_score: 0.72
-    search_volume: 1231
+    search_volume: 368000
     suggested_match_type: exact
-  - keyword: near me business intelligence platform
-    relevance_score: 0.69
-    search_volume: 540
-    suggested_match_type: exact
-  - keyword: data visualization tool affordable
-    relevance_score: 0.67
-    search_volume: 1403
-    suggested_match_type: exact
-  - keyword: in mumbai
-    relevance_score: 0.66
-    search_volume: 7743
+  - keyword: digital and marketing
+    relevance_score: 0.53
+    search_volume: 368000
+    suggested_match_type: broad
+  - keyword: digital marketing agency
+    relevance_score: 0.47
+    search_volume: 110000
+    suggested_match_type: broad
+  - keyword: social media marketing
+    relevance_score: 0.44
+    search_volume: 74000
+    suggested_match_type: broad
+  - keyword: smm marketing
+    relevance_score: 0.44
+    search_volume: 74000
     suggested_match_type: phrase
-  - keyword: near me data visualization tool
-    relevance_score: 0.65
-    search_volume: 863
-    suggested_match_type: exact
-  - keyword: cheap data visualization tool
-    relevance_score: 0.65
-    search_volume: 826
-    suggested_match_type: exact
-  - keyword: room platform
-    relevance_score: 0.65
-    search_volume: 5858
-    suggested_match_type: phrase
-  - keyword: data visualization tool best
-    relevance_score: 0.64
-    search_volume: 633
-    suggested_match_type: exact
-  - keyword: data visualization tool near me
-    relevance_score: 0.64
-    search_volume: 526
-    suggested_match_type: exact
 keyword_analysis:
-  budget_allocation: 75000
+  budget_allocation: 2500
   target_conversion_rate: 0.02
-  total_ad_groups: 8
-  total_keywords: 178
+  total_ad_groups: 1
+  total_keywords: 19
